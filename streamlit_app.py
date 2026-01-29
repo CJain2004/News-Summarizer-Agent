@@ -141,6 +141,12 @@ def run_sync():
 with st.sidebar:
     st.title("Settings")
     
+    # API Key Check
+    if not os.environ.get("GROQ_API_KEY"):
+        st.error("⚠️ GROQ_API_KEY missing! AI summaries will fail.")
+        st.info("Go to App Settings > Secrets and add `GROQ_API_KEY`.")
+
+    
     # Filter
     companies = ["All"] + list(scraper.COMPANIES.keys())
     selected_company = st.selectbox("Filter by Company", companies)
