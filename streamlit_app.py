@@ -160,7 +160,7 @@ with st.sidebar:
             st.info("No new articles found.")
 
 # Main Content
-st.title("📈 Financial Pulse Agent")
+st.title("📈 Financial News Summarizer")
 st.caption("Real-time financial news with AI summaries")
 
 # Get Data
