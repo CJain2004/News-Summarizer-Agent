@@ -21,7 +21,7 @@ The easiest way to run the app is using **Streamlit**. This runs the scraper, da
 
 1.  **Install Dependencies**:
     ```bash
-    pip install -r backend/requirements.txt
+    pip install -r requirements.txt
     ```
 2.  **Configure Env**:
     Create `.env` in the `backend` folder with `GROQ_API_KEY=your_key`.
@@ -36,8 +36,11 @@ The easiest way to run the app is using **Streamlit**. This runs the scraper, da
 If you prefer the separate React Backend/Frontend architecture:
 
 ### Backend
-1.  Navigate to `backend`: `cd backend`
-2.  Install requirements: `pip install -r requirements.txt`
+1.  **Install Dependencies**:
+    ```bash
+    pip install -r requirements.txt
+    ```
+2.  Navigate to `backend`: `cd backend`
 3.  Run Server: `uvicorn main:app --reload` (Runs on port 8000)
 
 ### Frontend
