@@ -26,6 +26,14 @@ st.set_page_config(
 
 # Initialize DB
 database.init_db()
+# 🔥 TEMPORARY CLEANUP (RUN ONCE)
+db = database.SessionLocal()
+db.query(database.Article).filter(
+    (database.Article.summary == None) |
+    (func.length(database.Article.summary) < 40)
+).delete()
+db.commit()
+db.close()
 
 # --- CSS Styling ---
 st.markdown("""
@@ -104,6 +112,9 @@ def run_sync():
 
             # Summarize
             summary = summary_engine.summarize(content)
+                        
+            if not summary or len(summary) < 30:
+                continue  # DO NOT SAVE without real
 
             article = database.Article(
                 title=art["title"],
@@ -140,11 +151,23 @@ def run_sync():
 # Sidebar
 with st.sidebar:
     st.title("Settings")
-    
-    # API Key Check
-    if not os.environ.get("GROQ_API_KEY"):
+    api_key = None
+
+    try:
+        api_key = st.secrets.get("GROQ_API_KEY")
+    except FileNotFoundError:
+        api_key = os.environ.get("GROQ_API_KEY")
+
+    if not api_key:
         st.error("⚠️ GROQ_API_KEY missing! AI summaries will fail.")
-        st.info("Go to App Settings > Secrets and add `GROQ_API_KEY`.")
+
+    # API Key Check
+    # if "GROQ_API_KEY" not in st.secrets:
+    #     st.error("⚠️ GROQ_API_KEY missing in Streamlit Secrets")
+
+    # if not os.environ.get("GROQ_API_KEY"):
+    #     st.error("⚠️ GROQ_API_KEY missing! AI summaries will fail.")
+    #     st.info("Go to App Settings > Secrets and add `GROQ_API_KEY`.")
 
     
     # Filter
