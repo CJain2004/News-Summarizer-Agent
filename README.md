@@ -1,6 +1,6 @@
 # Financial News Aggregator
 
-A real-time financial news aggregation system that collects, organizes, and summarizes news for major tech companies (Microsoft, Google, Apple, Meta).
+A real-time financial news aggregation system that collects, organizes, and summarizes news for major tech companies (Microsoft, Google, Apple, Meta). It is hosted live at: https://ai-finance-new-summarizer.streamlit.app/
 
 ## Features
 
