@@ -23,8 +23,14 @@ The easiest way to run the app is using **Streamlit**. This runs the scraper, da
     ```bash
     pip install -r requirements.txt
     ```
-2.  **Configure Env**:
-    Create `.env` in the `backend` folder with `GROQ_API_KEY=your_key`.
+2.  **Configure API Key**:
+    The app supports **Hybrid Configuration** (works locally and in cloud):
+    *   **Local**: Create a `.env` file in the root: `GROQ_API_KEY=gsk_...`
+    *   **Streamlit Cloud**: Add to "Secrets" in the dashboard.
+    *   **Local Streamlit (Optional)**: Create `.streamlit/secrets.toml`:
+        ```toml
+        GROQ_API_KEY = "gsk_..."
+        ```
 3.  **Run**:
     ```bash
     streamlit run streamlit_app.py
